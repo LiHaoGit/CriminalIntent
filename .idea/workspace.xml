@@ -33,9 +33,18 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="app: com.example.CriminalIntent" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="44bf4c19-a5d4-434a-81d7-4b1df9c51f07" name="Default" comment="初始化">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    <list default="true" id="44bf4c19-a5d4-434a-81d7-4b1df9c51f07" name="Default" comment="过滤intellij配置文件夹idea">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\lee\IdeaProjects\CriminalIntent\.idea\.name" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\lee\IdeaProjects\CriminalIntent\.idea\codeStyleSettings.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\lee\IdeaProjects\CriminalIntent\.idea\compiler.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\lee\IdeaProjects\CriminalIntent\.idea\encodings.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\lee\IdeaProjects\CriminalIntent\.idea\misc.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\lee\IdeaProjects\CriminalIntent\.idea\modules.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\lee\IdeaProjects\CriminalIntent\.idea\scopes\scope_settings.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\lee\IdeaProjects\CriminalIntent\.idea\uiDesigner.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\lee\IdeaProjects\CriminalIntent\.idea\vcs.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\lee\IdeaProjects\CriminalIntent\.idea\workspace.xml" afterPath="" />
     </list>
     <list id="6c40a823-2b64-49b6-b578-335b098d46e6" name="Failed commit: Default" comment="换行" />
     <ignored path="CriminalIntent.iws" />
@@ -419,7 +428,7 @@
       <workItem from="1408285114370" duration="873000" />
       <workItem from="1408286004712" duration="69000" />
       <workItem from="1408286108007" duration="27000" />
-      <workItem from="1408368018894" duration="805000" />
+      <workItem from="1408368018894" duration="1110000" />
     </task>
     <task id="LOCAL-00001" summary="换行">
       <created>1408285202262</created>
@@ -429,11 +438,15 @@
       <created>1408286058903</created>
       <updated>1408286058903</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="过滤intellij配置文件夹idea">
+      <created>1408368879311</created>
+      <updated>1408368879311</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="9847000" />
+    <option name="totallyTimeSpent" value="10152000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -487,7 +500,8 @@
     </option>
     <MESSAGE value="换行" />
     <MESSAGE value="初始化" />
-    <option name="LAST_COMMIT_MESSAGE" value="初始化" />
+    <MESSAGE value="过滤intellij配置文件夹idea" />
+    <option name="LAST_COMMIT_MESSAGE" value="过滤intellij配置文件夹idea" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
