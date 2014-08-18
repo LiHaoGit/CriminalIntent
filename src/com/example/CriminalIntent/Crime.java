@@ -7,6 +7,7 @@ import java.util.UUID;
 
 /**
  * Created by lee on 2014/8/17.
+ * 数据模型
  */
 public class Crime {
     private UUID mId;
@@ -48,6 +49,7 @@ public class Crime {
         this.mSolved = mSolved;
     }
 
+    //重写toString()方法,格式化时间
     @Override
     public String toString() {
         return DateFormat.format("yyyy-MM-dd kk:mm:ss",this.mDate).toString();

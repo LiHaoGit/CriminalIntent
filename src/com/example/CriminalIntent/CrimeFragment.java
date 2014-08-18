@@ -4,7 +4,6 @@ import android.app.Fragment;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,10 +13,10 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.util.Log;
 
-import java.util.Date;
 
 /**
  * Created by lee on 2014/8/17.
+ * 详情碎片
  */
 public class CrimeFragment extends Fragment {
     private Crime mCrime;
