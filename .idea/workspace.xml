@@ -42,11 +42,7 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="app: com.example.CriminalIntent" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="44bf4c19-a5d4-434a-81d7-4b1df9c51f07" name="Default" comment="完成显示数据列表">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/layout/list_item_crime.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/CriminalIntent/Crime.java" afterPath="$PROJECT_DIR$/src/com/example/CriminalIntent/Crime.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/CriminalIntent/CrimeFragment.java" afterPath="$PROJECT_DIR$/src/com/example/CriminalIntent/CrimeFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/CriminalIntent/CrimeListFragment.java" afterPath="$PROJECT_DIR$/src/com/example/CriminalIntent/CrimeListFragment.java" />
+    <list default="true" id="44bf4c19-a5d4-434a-81d7-4b1df9c51f07" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <list id="6c40a823-2b64-49b6-b578-335b098d46e6" name="Failed commit: Default" comment="换行" />
@@ -535,7 +531,7 @@
       <workItem from="1408353639855" duration="714000" />
       <workItem from="1408354406033" duration="1066000" />
       <workItem from="1408355495347" duration="889000" />
-      <workItem from="1408428116821" duration="4074000" />
+      <workItem from="1408428116821" duration="4092000" />
     </task>
     <task id="LOCAL-00001" summary="换行">
       <created>1408285202262</created>
@@ -549,11 +545,15 @@
       <created>1408356379598</created>
       <updated>1408356379598</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="完成显示数据列表">
+      <created>1408432818071</created>
+      <updated>1408432818071</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="16651000" />
+    <option name="totallyTimeSpent" value="16669000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
