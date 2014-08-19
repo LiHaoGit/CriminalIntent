@@ -1,8 +1,8 @@
 package com.example.CriminalIntent;
 
 import android.app.ListFragment;
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
@@ -33,10 +33,23 @@ public class CrimeListFragment extends ListFragment {
     public void onListItemClick(ListView l, View v, int position, long id) {
         //由于checkbox是可聚焦的,要把checkbox的 focusable属性设置为false (在布局文件里面设置)
         Crime c=((CrimeAdapter)getListAdapter()).getItem(position);
-        Log.d(CrimeFragment.TAG, c.getTitle()+" was clicked");
+        //Log.d(CrimeFragment.TAG, c.getTitle()+" was clicked");
+        Intent i=new Intent(getActivity(),CrimeActivity.class);
+        i.putExtra(CrimeFragment.CRIMEID,c.getId());
+        startActivity(i);
 
     }
 
+    //跟新数据列表
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        ((CrimeAdapter)getListAdapter()).notifyDataSetChanged();
+    }
+
+    //配置 列表适配器
     private class CrimeAdapter extends ArrayAdapter<Crime>{
         public CrimeAdapter(ArrayList<Crime> crimes){
             super(getActivity(),0,crimes);
