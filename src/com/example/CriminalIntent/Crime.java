@@ -37,6 +37,10 @@ public class Crime {
         return mDate;
     }
 
+    public String getDateFormat(){
+        return DateFormat.format("yyyy-MM-dd kk:mm:ss",this.mDate).toString();
+    }
+
     public void setDate(Date mDate) {
         this.mDate = mDate;
     }
@@ -52,7 +56,7 @@ public class Crime {
     //重写toString()方法,格式化时间
     @Override
     public String toString() {
-        return DateFormat.format("yyyy-MM-dd kk:mm:ss",this.mDate).toString();
+        return mTitle;
 
     }
 }
