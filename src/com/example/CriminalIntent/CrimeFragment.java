@@ -1,6 +1,8 @@
 package com.example.CriminalIntent;
 
+
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -73,7 +75,14 @@ public class CrimeFragment extends Fragment {
 
         mDateButton=(Button)v.findViewById(R.id.crime_date);
         mDateButton.setText(mCrime.getDateFormat());
-        mDateButton.setEnabled(false);
+        //mDateButton.setEnabled(false);
+        mDateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DialogFragment dialogFragment=new DatePickerFragment();
+                dialogFragment.show(getFragmentManager(),"datePicker");
+            }
+        });
 
         mSolvedCheckBox=(CheckBox)v.findViewById(R.id.crime_solved);
         mSolvedCheckBox.setChecked(mCrime.isSolved());
