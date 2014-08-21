@@ -1,6 +1,8 @@
 package com.example.CriminalIntent;
 
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
@@ -15,6 +17,7 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.util.Log;
 
+import java.util.Date;
 import java.util.UUID;
 
 
@@ -30,6 +33,7 @@ public class CrimeFragment extends Fragment {
 
     public static final String TAG="CrimeFragment";
     public static final String CRIMEID="com.example.CriminalIntent.CrimeId";
+    private static final int REQUEST_DATE = 0;
 
     //当activity调用时,传来crime的值
     public static CrimeFragment newInstance(UUID crimeId){
@@ -79,7 +83,11 @@ public class CrimeFragment extends Fragment {
         mDateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DialogFragment dialogFragment=new DatePickerFragment();
+                //当点击按钮的时候,创建一个新的DatePickerFragment对话窗
+                DialogFragment dialogFragment=DatePickerFragment.newInstance(mCrime.getDate());
+                //将次对话窗的回传目标设置为CrimeFragment
+                dialogFragment.setTargetFragment(CrimeFragment.this,REQUEST_DATE);
+                //DatePickerFragment对话窗启动
                 dialogFragment.show(getFragmentManager(),"datePicker");
             }
         });
@@ -101,5 +109,15 @@ public class CrimeFragment extends Fragment {
         return v;
     }
 
-
+    //拿到DatePickerFragment回传的数据
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        //super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode!= Activity.RESULT_OK) return;
+        if (requestCode==REQUEST_DATE){
+            Date date=(Date)data.getSerializableExtra(DatePickerFragment.EXTRA_DATE);
+            mCrime.setDate(date);
+            mDateButton.setText(mCrime.getDateFormat());
+        }
+    }
 }
