@@ -38,7 +38,7 @@ public class Crime {
     }
 
     public String getDateFormat(){
-        return DateFormat.format("yyyy-MM-dd kk:mm:ss",this.mDate).toString();
+        return DateFormat.format("yyyy-MM-dd kk:mm",this.mDate).toString();
     }
 
     public void setDate(Date mDate) {

@@ -15,7 +15,6 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
-import android.util.Log;
 
 import java.util.Date;
 import java.util.UUID;
@@ -30,6 +29,8 @@ public class CrimeFragment extends Fragment {
     EditText mTitleField;
     Button mDateButton;
     CheckBox mSolvedCheckBox;
+    Button mSetDateButton;
+    Button mSetTimeButton;
 
     public static final String TAG="CrimeFragment";
     public static final String CRIMEID="com.example.CriminalIntent.CrimeId";
@@ -79,8 +80,22 @@ public class CrimeFragment extends Fragment {
 
         mDateButton=(Button)v.findViewById(R.id.crime_date);
         mDateButton.setText(mCrime.getDateFormat());
-        //mDateButton.setEnabled(false);
+        mDateButton.setEnabled(false);
+        /*
         mDateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //当点击按钮的时候,创建一个新的TimePickerFragment对话窗
+                DialogFragment dialogFragment = TimePickerFragment.newInstance(mCrime.getDate());// DatePickerFragment.newInstance(mCrime.getDate());
+                //将次对话窗的回传目标设置为CrimeFragment
+                dialogFragment.setTargetFragment(CrimeFragment.this, REQUEST_DATE);
+                //TimePickerFragment对话窗启动
+                dialogFragment.show(getFragmentManager(), "timePicker");
+            }
+        });
+        */
+        mSetDateButton=(Button)v.findViewById(R.id.set_crime_date);
+        mSetDateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //当点击按钮的时候,创建一个新的DatePickerFragment对话窗
@@ -91,6 +106,21 @@ public class CrimeFragment extends Fragment {
                 dialogFragment.show(getFragmentManager(),"datePicker");
             }
         });
+
+
+        mSetTimeButton=(Button)v.findViewById(R.id.set_crime_time);
+        mSetTimeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //当点击按钮的时候,创建一个新的TimePickerFragment对话窗
+                DialogFragment dialogFragment=TimePickerFragment.newInstance(mCrime.getDate());
+                //将次对话窗的回传目标设置为CrimeFragment
+                dialogFragment.setTargetFragment(CrimeFragment.this,REQUEST_DATE);
+                //TimePickerFragment对话窗启动
+                dialogFragment.show(getFragmentManager(),"timePicker");
+            }
+        });
+
 
         mSolvedCheckBox=(CheckBox)v.findViewById(R.id.crime_solved);
         mSolvedCheckBox.setChecked(mCrime.isSolved());
@@ -105,7 +135,7 @@ public class CrimeFragment extends Fragment {
 
 
 
-        Log.d(TAG,"onCreateView() called!");
+
         return v;
     }
 
@@ -116,7 +146,9 @@ public class CrimeFragment extends Fragment {
         if (resultCode!= Activity.RESULT_OK) return;
         if (requestCode==REQUEST_DATE){
             Date date=(Date)data.getSerializableExtra(DatePickerFragment.EXTRA_DATE);
+
             mCrime.setDate(date);
+
             mDateButton.setText(mCrime.getDateFormat());
         }
     }

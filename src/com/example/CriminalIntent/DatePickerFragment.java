@@ -38,6 +38,8 @@ public class DatePickerFragment extends DialogFragment{
         int year=calendar.get(Calendar.YEAR);
         final int month=calendar.get(Calendar.MONTH);
         final int day=calendar.get(Calendar.DAY_OF_MONTH);
+        final int hour= calendar.get(Calendar.HOUR_OF_DAY);
+        final int minute=calendar.get(Calendar.MINUTE);
 
         View v= getActivity().getLayoutInflater().inflate(R.layout.dialog_date,null);
 
@@ -48,7 +50,7 @@ public class DatePickerFragment extends DialogFragment{
             //将跟新过后的数据保存
             @Override
             public void onDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                mDate= new  GregorianCalendar(year,month,day).getTime();
+                mDate= new  GregorianCalendar(year,month,day,hour,minute).getTime();
 
                 //将跟新过后的时间保存,这样当屏幕横向等情况时,可以保存数据
                 getArguments().putSerializable(EXTRA_DATE,mDate);
