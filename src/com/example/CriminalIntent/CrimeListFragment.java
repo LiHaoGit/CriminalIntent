@@ -1,7 +1,9 @@
 package com.example.CriminalIntent;
 
 
+import android.annotation.TargetApi;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.util.Log;
@@ -18,6 +20,9 @@ public class CrimeListFragment extends ListFragment {
 
     private ArrayList<Crime> mCrimes;
 
+    //用来保存ShowSubtitle按钮的状态
+    private boolean mSubtitleVisible;
+
     public static final String TAG="CrimeListFragment";
 
 
@@ -30,7 +35,22 @@ public class CrimeListFragment extends ListFragment {
 
         CrimeAdapter crimeAdapter=new CrimeAdapter(mCrimes);
         setListAdapter(crimeAdapter);
+
+        setRetainInstance(true);
+        mSubtitleVisible=false;
         setHasOptionsMenu(true);
+    }
+
+    @TargetApi(11) //api为11以上
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View v= super.onCreateView(inflater, container, savedInstanceState);
+        if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.HONEYCOMB){
+            if (mSubtitleVisible){
+                getActivity().getActionBar().setSubtitle(R.string.subtitle);
+            }
+        }
+        return v;
     }
 
     @Override
@@ -86,6 +106,9 @@ public class CrimeListFragment extends ListFragment {
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.fragment_crime_list,menu);
+        MenuItem showSubtitle=menu.findItem(R.id.menu_item_show_subtitle);
+        if (mSubtitleVisible&&showSubtitle!=null)
+            showSubtitle.setTitle(R.string.hide_subtitle);
     }
 
     //监视新增菜单
@@ -98,6 +121,18 @@ public class CrimeListFragment extends ListFragment {
                 Intent i=new Intent(getActivity(),CrimePageViewActivity.class);
                 i.putExtra(CrimeFragment.CRIMEID,c.getId());
                 startActivityForResult(i,0);
+                return true;
+            case R.id.menu_item_show_subtitle:
+                if (getActivity().getActionBar().getSubtitle()==null){
+                    getActivity().getActionBar().setSubtitle(R.string.subtitle);
+                    mSubtitleVisible=true;
+                    item.setTitle(R.string.hide_subtitle);
+                }else {
+                    getActivity().getActionBar().setSubtitle(null);
+                    mSubtitleVisible=false;
+                    item.setTitle(R.string.show_subtitle);
+                }
+
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
