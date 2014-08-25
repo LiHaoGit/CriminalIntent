@@ -11,4 +11,9 @@
     <string name="time_str">Time</string>
     <string name="date_str">Date</string>
     <string name="time_or_date">Time or Date?</string>
+    <string name="new_crime">New Crime</string>
+    <string name="show_subtitle">Show Subtitle</string>
+    <string name="hide_subtitle">Hide Subtitle</string>
+    <string name="subtitle">If you see something, say something.</string>
+    <string name="delete_crime">Delete Crime</string>
 </resources>

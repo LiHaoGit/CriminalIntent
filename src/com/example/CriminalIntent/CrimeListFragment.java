@@ -4,8 +4,8 @@ package com.example.CriminalIntent;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
-import android.view.View;
-import android.view.ViewGroup;
+import android.util.Log;
+import android.view.*;
 import android.widget.*;
 
 import java.util.ArrayList;
@@ -18,6 +18,8 @@ public class CrimeListFragment extends ListFragment {
 
     private ArrayList<Crime> mCrimes;
 
+    public static final String TAG="CrimeListFragment";
+
 
 
     @Override
@@ -28,6 +30,7 @@ public class CrimeListFragment extends ListFragment {
 
         CrimeAdapter crimeAdapter=new CrimeAdapter(mCrimes);
         setListAdapter(crimeAdapter);
+        setHasOptionsMenu(true);
     }
 
     @Override
@@ -42,12 +45,11 @@ public class CrimeListFragment extends ListFragment {
     }
 
     //跟新数据列表
-
-
     @Override
     public void onResume() {
         super.onResume();
-        ((CrimeAdapter)getListAdapter()).notifyDataSetChanged();
+        ((CrimeAdapter) getListAdapter()).notifyDataSetChanged();
+        Log.d(TAG,"notifyDataSetChanged() called!");
     }
 
     //配置 列表适配器
@@ -77,5 +79,31 @@ public class CrimeListFragment extends ListFragment {
             return convertView;
 
         }
+    }
+
+    //创建actionbar菜单
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.fragment_crime_list,menu);
+    }
+
+    //监视新增菜单
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.menu_item_new_crime:
+                Crime c=new Crime();
+                CrimeLab.get(getActivity()).newCrime(c);
+                Intent i=new Intent(getActivity(),CrimePageViewActivity.class);
+                i.putExtra(CrimeFragment.CRIMEID,c.getId());
+                startActivityForResult(i,0);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
+
+
     }
 }

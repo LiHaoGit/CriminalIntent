@@ -9,7 +9,10 @@
                   android:label="@string/app_name">
         </activity>
         <activity android:name=".CrimePageViewActivity">
-
+            <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value=".CrimeListActivity"
+                    />
         </activity>
         <activity android:name=".CrimeListActivity">
             <intent-filter>

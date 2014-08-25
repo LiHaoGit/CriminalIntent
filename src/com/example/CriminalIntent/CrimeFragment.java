@@ -3,12 +3,15 @@ package com.example.CriminalIntent;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.NavUtils;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -32,7 +35,7 @@ public class CrimeFragment extends Fragment {
     Button mSetDateButton;
     Button mSetTimeButton;
 
-    public static final String TAG="CrimeFragment";
+    //public static final String TAG="CrimeFragment";
     public static final String CRIMEID="com.example.CriminalIntent.CrimeId";
     private static final int REQUEST_DATE = 0;
 
@@ -51,6 +54,7 @@ public class CrimeFragment extends Fragment {
         super.onCreate(savedInstanceState);
         UUID crimeId=(UUID)getArguments().getSerializable(CRIMEID);
         mCrime=CrimeLab.get(getActivity()).getCrime(crimeId);
+        setHasOptionsMenu(true);
     }
 
     //设置对应布局的显示的值
@@ -58,23 +62,34 @@ public class CrimeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
 
         View v=inflater.inflate(R.layout.fragment_crime,parent,false);
+        //判断当前Activity有没有在清单文件上配置 meta-data 设置父Activity名称
+        if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.HONEYCOMB){
+            if (NavUtils.getParentActivityName(getActivity())!=null){
+                getActivity().getActionBar().setDisplayHomeAsUpEnabled(true);
+            }
+
+        }
 
         mTitleField=(EditText)v.findViewById(R.id.crime_title);
         mTitleField.setText(mCrime.getTitle());
         mTitleField.addTextChangedListener(new TextWatcher() {
+            //在这监视,会漏掉最后一个字符
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                mCrime.setTitle(s.toString());
+
+
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                //This space intentionally left blank;
+                mCrime.setTitle(s.toString());
+
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-                //This one too;
+
+
             }
         });
 
@@ -137,6 +152,21 @@ public class CrimeFragment extends Fragment {
 
 
         return v;
+    }
+    /**
+     * 当用户点击向上按钮的时候,返回父Activity
+     */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:
+                if (NavUtils.getParentActivityName(getActivity())!=null)
+                    NavUtils.navigateUpFromSameTask(getActivity());
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
     }
 
     //拿到DatePickerFragment回传的数据

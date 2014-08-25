@@ -6,13 +6,13 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.UUID;
 
 /**
  * Created by Administrator on 14/8/20/020.
+ * 数据详情显示
  */
 public class CrimePageViewActivity extends FragmentActivity {
 
@@ -59,7 +59,7 @@ public class CrimePageViewActivity extends FragmentActivity {
             //onPageScrolled(...)方法可告知我们页面将会滑向哪里
             @Override
             public void onPageScrolled(int i, float v, int i2) {
-                Log.d(CrimeFragment.TAG, "onPageScrolled() called! i:" + i+" v:"+v+" i2:"+i2);
+
             }
 
             //当viewpager改变的的时候触发
@@ -77,7 +77,7 @@ public class CrimePageViewActivity extends FragmentActivity {
             */
             @Override
             public void onPageScrollStateChanged(int i) {
-                Log.d(CrimeFragment.TAG, "onPageSelected() called! i:" + i);
+
 
             }
         });
