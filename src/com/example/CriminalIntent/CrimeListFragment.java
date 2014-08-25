@@ -34,6 +34,7 @@ public class CrimeListFragment extends ListFragment {
         mCrimes =CrimeLab.get(getActivity()).getCrimes();
 
         CrimeAdapter crimeAdapter=new CrimeAdapter(mCrimes);
+
         setListAdapter(crimeAdapter);
 
         setRetainInstance(true);
@@ -45,11 +46,16 @@ public class CrimeListFragment extends ListFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v= super.onCreateView(inflater, container, savedInstanceState);
+        //View v= inflater.inflate(R.layout.fragment_list_crime,container);
         if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.HONEYCOMB){
             if (mSubtitleVisible){
                 getActivity().getActionBar().setSubtitle(R.string.subtitle);
             }
         }
+        //ListView listView=(ListView)v.findViewById(R.id.list);
+        //View emptyView=v.findViewById(R.id.empty);
+
+        //getListView().setEmptyView(emptyView);
         return v;
     }
 
