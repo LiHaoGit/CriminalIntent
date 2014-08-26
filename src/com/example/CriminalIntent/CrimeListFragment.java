@@ -45,17 +45,18 @@ public class CrimeListFragment extends ListFragment {
     @TargetApi(11) //api为11以上
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View v= super.onCreateView(inflater, container, savedInstanceState);
-        //View v= inflater.inflate(R.layout.fragment_list_crime,container);
+        //View v= super.onCreateView(inflater, container, savedInstanceState);
+        View v= inflater.inflate(R.layout.fragment_list_crime,container,false);
         if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.HONEYCOMB){
             if (mSubtitleVisible){
                 getActivity().getActionBar().setSubtitle(R.string.subtitle);
             }
         }
-        //ListView listView=(ListView)v.findViewById(R.id.list);
-        //View emptyView=v.findViewById(R.id.empty);
+        ListView listView=(ListView)v.findViewById(android.R.id.list);
+        View emptyView=v.findViewById(android.R.id.empty);
 
         //getListView().setEmptyView(emptyView);
+
         return v;
     }
 

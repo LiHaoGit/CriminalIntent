@@ -5,24 +5,32 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
     <ListView
-            android:id="@+id/list"
+            android:id="@android:id/list"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"></ListView>
     <LinearLayout
-            android:id="@+id/empty"
+            android:id="@android:id/empty"
             android:orientation="vertical"
-            android:gravity="center"
+            android:layout_gravity="center"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-        <Button
-                android:text="新增一条Crime"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+            android:layout_height="match_parent"
+            android:weightSum="1">
+
         <TextView
                 android:textSize="30dp"
                 android:text="没有任何记录"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="247dp"
+                android:gravity="center"
+                android:layout_gravity="center_horizontal"/>
+
+        <Button
+                android:text="新增一条Crime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_gravity="center_horizontal"
+                />
 
     </LinearLayout>
 </FrameLayout>
