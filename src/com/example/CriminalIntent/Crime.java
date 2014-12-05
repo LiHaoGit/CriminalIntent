@@ -5,10 +5,6 @@ import android.text.format.DateFormat;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.IOError;
-import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.UUID;
 
