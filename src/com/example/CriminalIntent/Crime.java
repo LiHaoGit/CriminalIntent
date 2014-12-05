@@ -2,6 +2,13 @@ package com.example.CriminalIntent;
 
 import android.text.format.DateFormat;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.IOError;
+import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.UUID;
 
@@ -10,6 +17,12 @@ import java.util.UUID;
  * 数据模型
  */
 public class Crime {
+
+    private static final  String JSON_ID = "id";
+    private static final  String JSON_TITLE = "title";
+    private static final  String JSON_SOLVED = "solved";
+    private static final  String JSON_DATE = "date";
+
     private UUID mId;
     private String mTitle;
     private Date mDate;
@@ -19,6 +32,13 @@ public class Crime {
     {
         mId=mId.randomUUID();
         mDate=new Date();
+    }
+
+    public Crime(JSONObject json)throws JSONException{
+        mId = UUID.fromString(json.getString(JSON_ID));
+        mTitle = json.getString(JSON_TITLE);
+        mDate = new Date(json.getLong(JSON_DATE));
+        mSolved = json.getBoolean(JSON_SOLVED);
     }
 
     public UUID getId() {
@@ -59,4 +79,15 @@ public class Crime {
         return mTitle;
 
     }
+
+    public JSONObject toJSON()throws JSONException{
+        JSONObject json = new JSONObject();
+        json.put(JSON_ID,mId.toString());
+        json.put(JSON_TITLE,mTitle);
+        json.put(JSON_SOLVED,mSolved);
+        json.put(JSON_DATE,mDate);
+        return json;
+    }
+
+
 }
