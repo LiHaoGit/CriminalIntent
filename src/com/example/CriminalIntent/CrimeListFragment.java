@@ -55,7 +55,54 @@ public class CrimeListFragment extends ListFragment {
         ListView listView=(ListView)v.findViewById(android.R.id.list);
         View emptyView=v.findViewById(android.R.id.empty);
 
-        //getListView().setEmptyView(emptyView);
+        if (Build.VERSION.SDK_INT<Build.VERSION_CODES.HONEYCOMB){
+            registerForContextMenu(listView);
+        }else {   //当为高于11的api以上的系统，使用上下文操作栏
+            listView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE_MODAL);
+            listView.setMultiChoiceModeListener(new AbsListView.MultiChoiceModeListener() {
+                @Override
+                public void onItemCheckedStateChanged(ActionMode mode, int position, long id, boolean checked) {
+
+                }
+
+                @Override
+                public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+                    MenuInflater inflater1 =mode.getMenuInflater();
+                    inflater1.inflate(R.menu.crime_list_item_context,menu);
+                    return true;
+                }
+
+                @Override
+                public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
+                    return false;
+                }
+
+                @Override
+                public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+                    switch (item.getItemId()){
+                        case R.id.menu_item_delete_crime:
+                            CrimeAdapter adapter= (CrimeAdapter)getListAdapter();
+                            CrimeLab crimeLab = CrimeLab.get(getActivity());
+                            for (int i = adapter.getCount()-1;i>=0;i--){
+                                if (getListView().isItemChecked(i)){
+                                    crimeLab.DeleteCrime(adapter.getItem(i));
+                                }
+                            }
+                            mode.finish();
+                            adapter.notifyDataSetChanged();
+                            return true;
+                        default:
+                            return false;
+                    }
+
+                }
+
+                @Override
+                public void onDestroyActionMode(ActionMode mode) {
+
+                }
+            });
+        }
 
         return v;
     }
@@ -147,5 +194,26 @@ public class CrimeListFragment extends ListFragment {
 
 
 
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)item.getMenuInfo();
+        int position = info.position;
+        CrimeAdapter adapter = (CrimeAdapter)getListAdapter();
+        Crime crime = adapter.getItem(position);
+        switch (item.getItemId()){
+            case R.id.menu_item_delete_crime:
+                CrimeLab.get(getActivity()).DeleteCrime(crime);
+                adapter.notifyDataSetChanged();
+                return true;
+        }
+        return super.onContextItemSelected(item);
+    }
+
+    //创建上文菜单
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        getActivity().getMenuInflater().inflate(R.menu.crime_list_item_context,menu);
     }
 }
